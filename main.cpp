@@ -17,11 +17,11 @@ class ColorHandler {
 private:
     Color currentColor;
 
-    void setConsoleColor(Color color) const {
+    void setConsoleColor(Color color){
         SetConsoleTextAttribute(hConsole, static_cast<int>(color));
     }
 
-    void printColorPropertiesImpl() const {
+    void printColorPropertiesImpl() {
         setConsoleColor(currentColor);
         switch (currentColor) {
         case Color::Red:
@@ -47,15 +47,15 @@ public:
         setConsoleColor(color);
     }
 
-    Color getColor() const {
+    Color getColor() {
         return currentColor;
     }
 
-    virtual void printColorProperties() const {
+    void printColorProperties(){
         printColorPropertiesImpl();
     }
 
-    virtual ~ColorHandler() {
+    ~ColorHandler() {
         SetConsoleTextAttribute(hConsole, 7);
     }
 };
@@ -77,7 +77,7 @@ public:
         setColor(newColor);
     }
 
-    void printColorProperties() const override {
+    void printColorProperties()  {
         cout << "Current color properties:" << endl;
         ColorHandler::printColorProperties();
     }
